@@ -6,11 +6,9 @@ import usersRouter from "./routes/index.mjs";
 
 import cookies from './middleware/cookies.mjs'
 
-import fs from "fs";
+import menusRouter from './routes/menus.mjs'
 
-import path, { dirname } from "path";
 
-import { fileURLToPath } from "url";
 
 // const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -32,7 +30,7 @@ app.get("/next", (req, res) => {
 
 app.use(express.json());
 
-app.use("/api/v1/library", requestTime, usersRouter);
+app.use("/api/v1/library", requestTime, usersRouter, menusRouter);
 
 // server indentifikavimas
 

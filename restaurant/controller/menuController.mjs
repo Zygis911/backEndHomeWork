@@ -90,12 +90,15 @@ const menuController = {
 
     try {
         const id = parseInt(req.params.id)
+        const updatedMenuFields = req.body;
         const updateMenu = {...req.body, id};
         let menuIndex = menus.findIndex((menu) => menu.id === id);
         if (menuIndex === -1) {
             res.status(404).json({message: "Menu item not found"})
             return;
         }
+
+        menus[menuIndex] = {...menus[menuIndex], ...updatedMenuFields};
 
         res.status(200).json(updateMenu);
         await fs.promises.writeFile(

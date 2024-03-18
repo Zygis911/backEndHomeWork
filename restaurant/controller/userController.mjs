@@ -200,38 +200,6 @@ const userController = {
     }
   },
 
-  // MENU service
-
-  createMenuItem: async (req, res) => {
-    try {
-      // irgi nesigauna bbz
-      const newMenuItem = {
-        ...req.body,
-        id: "",
-        name: "",
-        description: "",
-        price: "",
-        category: "",
-      };
-      menus.push(newMenuItem);
-      menus.forEach((menu, index) => {
-        menus.id = index + 1;
-      });
-
-      await fs.promises.writeFile(
-        path.join(__dirname, "../db/menus.json"),
-        JSON.stringify(menus, null, 2)
-      );
-    } catch (error) {
-      console.log(error);
-      res
-        .status(500)
-        .json({ message: "an error occured creating a menu item" });
-    }
-  },
-
-
-
   updateMenuItem: async (req, res) => {
     try {
       const id = parseInt(req.params.id);
@@ -256,24 +224,7 @@ const userController = {
     }
   },
 
-  deleteMenuItem: async (res, req) => {
-    try {
-      const id = parseInt(req.params.id);
-      let menuIndex = menus.findIndex((menu) => menu.id === id);
-      if (menuIndex === -1) {
-        res.status(404).json({ message: "menu item not found" });
-        return;
-      }
-      menus.splice(menuIndex, 1);
-      await fs.promises.writeFile(
-        path.join(__dirname, "../db/menus.json"),
-        JSON.stringify(menus, null, 2)
-      );
-      res.status(204).json({ message: "menu item succesfulyl deleted" });
-    } catch (error) {
-      res.status(500).json({ message: "an error occured deleting" });
-    }
-  },
+
 
   createOrderUser: async (req, res) => {
     try {

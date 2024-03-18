@@ -19,12 +19,5 @@
     "description": "cake w chocolate",
     "price": "3.99",
     "category": "dessert"
-  },
-  {
-    "id": 4,
-    "name": "sprite",
-    "description": "sparkling drink",
-    "price": "2.99",
-    "category": "drink"
   }
 ]
